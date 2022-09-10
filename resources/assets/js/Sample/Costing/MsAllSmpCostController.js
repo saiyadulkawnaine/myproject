@@ -1,0 +1,15 @@
+require('./MsSmpCostController.js');
+require('./MsSmpCostFabricController.js');
+require('./MsSmpCostFabricConController.js');
+require('./MsSmpCostYarnController.js');
+require('./MsSmpCostYarnDyeingController.js');
+require('./MsSmpCostKnittingController.js');
+require('./MsSmpCostDyeingController.js');
+require('./MsSmpCostDyeingConController.js');
+require('./MsSmpCostAopController.js');
+require('./MsSmpCostFinishingController.js');
+require('./MsSmpCostTrimController.js');
+require('./MsSmpCostTrimConController.js');
+require('./MsSmpCostCmController.js');
+require('./MsSmpCostEmbController.js');
+require('./MsSmpCostEmbConController.js');

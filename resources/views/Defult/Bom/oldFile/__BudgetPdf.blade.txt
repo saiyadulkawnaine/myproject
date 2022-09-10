@@ -1,0 +1,868 @@
+<table cellspacing="0" cellpadding="2" border="1">
+<tr>
+<td width="107">Budget ID</td>
+<td width="107">{{ $budget['master']->id }}</td>
+<td width="106">Company</td>
+<td width="106">{{ $budget['master']->company_name}}</td>
+<td width="106">Buyer</td>
+<td width="106">{{ $budget['master']->buyer_name}}</td>
+</tr>
+<tr>
+<td width="107">Style Ref. No</td>
+<td width="107">{{ $budget['master']->style_ref  }}</td>
+<td width="106">Job No</td>
+<td width="106">{{ $budget['master']->job_no }}</td>
+<td width="106">Job Qty</td>
+<td width="106" align="right">{{ number_format($budget['master']->order_qty,0) }}</td>
+</tr>
+<tr>
+<td width="107">Job Cut Qty</td>
+<td width="107" align="right">{{ number_format($budget['master']->plan_cut_qty,0)  }}</td>
+<td width="106">Job Amount</td>
+<td width="106" align="right">{{ number_format($budget['master']->order_amount,2) }}</td>
+<td width="106" >Unit Price</td>
+<td width="106" align="right">{{ number_format($budget['master']->order_amount/$budget['master']->order_qty,4) }}</td>
+</tr>
+<tr>
+<td width="107">Team</td>
+<td width="107">{{ $budget['master']->team_name  }}</td>
+<td width="106">Order UOM</td>
+<td width="106">{{ $budget['master']->uom_code }}</td>
+<td width="106">Budget Unit</td>
+<td width="106">{{ $budget['master']->costingunit }}</td>
+</tr>
+<tr>
+<td width="107">Budget Date</td>
+<td width="107">{{ date('Y-m-d',strtotime( $budget['master']->budget_date))  }}</td>
+<td width="106">1st Ship Date</td>
+<td width="106">{{ $budget['master']->min_ship_date }}</td>
+<td width="106">Last Ship Date</td>
+<td width="106">{{ $budget['master']->max_ship_date }}</td>
+</tr>
+
+<tr>
+<td width="107">Remarks</td>
+<td width="531">{{ $budget['master']->remarks }}</td>
+</tr>
+</table>
+
+<br/>
+<caption>Fabric Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="70px">Fabric Nature</td>
+        <td width="308px">Fabric Description</td>
+        <td width="80px">Source</td>
+        <td width="30px">UOM</td>
+        <td width="50px">BOM Qty.</td>
+        <td width="40px">Rate</td>
+        <td width="60px">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $mtot=0;
+    $mtotcons=0;
+    $mtotfincons=0;
+    ?>
+    @foreach($budget['fabrics']['main'] as $row=>$value)
+    <?php
+    $cons=$value['fabric_cons'];
+    ?>
+    <tr>
+        <td width="70px">{{ $value['fabricnature'] }}</td>
+        <td width="308px"> {{ $value['style_gmt'] }} {{ $value['gmtspart'] }} {{ $value['fabric_description'] }}  {{ $value['fabriclooks'] }} {{ $value['fabricshape'] }}</td>
+        <td width="80px" align="center">{{ $value['materialsourcing'] }}</td>
+        <td width="30px" align="center">{{ $value['uom_name'] }}</td>
+        <td width="50px" align="right">{{   number_format($cons,2) }}</td>
+        <td width="40px" align="right">{{ $value['rate'] }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $mtot+= $value['amount'];
+    $mtotcons+= $value['fabric_cons'];
+    $mtotfincons=$value['req_fin_cons'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="70px"></td>
+        <td width="308px"></td>
+        <td width="80px"></td>
+        <td width="30px">Total</td>
+        <td width="50px" align="right">{{ number_format($mtotcons,2)}}</td>
+        <td width="40px"></td>
+        <td width="60px" align="right">{{ number_format($mtot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+<caption>Narrow Fabric Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="70px">Fabric Nature</td>
+        <td width="308px">Fabric Description</td>
+        <td width="80px">Source</td>
+        <td width="30px">UOM</td>
+        <td width="50px">BOM Qty.</td>
+        <td width="40px">Rate</td>
+        <td width="60px">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totcons=0;
+    $totfincons=0;
+    ?>
+    @foreach($budget['fabrics']['narrow'] as $row=>$value)
+    <?php
+    $cons=$value['fabric_cons'];
+    ?>
+    <tr>
+        <td width="70px">{{ $value['fabricnature'] }}</td>
+        <td width="308px"> {{ $value['style_gmt'] }} {{ $value['gmtspart'] }} {{ $value['fabric_description'] }}  {{ $value['fabriclooks'] }} {{ $value['fabricshape'] }}</td>
+        <td width="80px" align="center">{{ $value['materialsourcing'] }}</td>
+        <td width="30px" align="center">{{ $value['uom_name'] }}</td>
+        <td width="50px" align="right">{{   number_format($cons,2) }}</td>
+        <td width="40px" align="right">{{ $value['rate'] }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $totcons+= $value['fabric_cons'];
+    $totfincons+= $value['req_fin_cons'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="70px"></td>
+        <td width="308px"></td>
+        <td width="80px"></td>
+        <td width="30px">Total</td>
+        <td width="50px" align="right">{{ number_format($totcons,2)}}</td>
+        <td width="40px"></td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    <tr>
+        <td width="70px"></td>
+        <td width="308px"></td>
+        <td width="110px" align="right">Grand Total</td>
+        <td width="50px" align="right">{{ number_format($mtotcons+$totcons,2)}}</td>
+        <td width="40px"></td>
+        <td width="60px" align="right">{{ number_format($mtot+$tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+
+<caption>Yarn Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="488px">Yarn Description</td>
+        <td width="50px">BOM Qty.</td>
+        <td width="40px">Rate</td>
+        <td width="60px">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totcons=0;
+    $totYa=0;
+    ?>
+    @foreach($budget['yarns'] as $row=>$value)
+    <?php
+    $cons= $value['yarn_cons'];
+    ?>
+    <tr>
+        <td width="488px"> {{  $value['yarn_des'] }}</td>
+        <td width="50px" align="right">{{  number_format($cons,2) }}</td>
+        <td width="40px" align="right">{{  $value['yarn_rate'] }}</td>
+        <td width="60px" align="right">{{  number_format($value['yarn_amount'],2) }}</td>
+    </tr>
+    <?php 
+    $totcons+= $cons;
+    $tot+= $value['yarn_amount'];
+    $totYa+= $value['yarn_amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="488px" align="right">Total</td>
+        <td width="50px" align="right">{{ number_format($totcons,2)}}</td>
+        <td width="40px"></td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+<caption>Fabric Production Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="240px">Fabric Description</td>
+        <td width="88px">Process</td>
+        <td width="50px">BOM Qty.</td>
+        <td width="40px">Rate</td>
+        <td width="60px">Amount</td>
+        <td width="40px">Overhead Rate</td>
+        <td width="60px">Overhead Amount</td>
+        <td width="60px">Total Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $gtot=0;
+    $gohtot=0;
+    $gttot=0;
+    $fabproductionTot=[];
+    ?>
+    @foreach($budget['fabricProd'] as $processArr)
+    <?php 
+    $tot=0;
+    $ohtot=0;
+    $ttot=0;
+    
+    ?>
+    @foreach($processArr as $row)
+    <?php
+    $cons=$row->cons;
+    isset($fabproductionTot[$row->process_id])?$fabproductionTot[$row->process_id]+=$row->total_amount:$fabproductionTot[$row->process_id]=$row->total_amount;
+    ?>
+    <tr>
+        <td width="240px"> {{ $row->budgetfabric }}</td>
+        <td width="88px">{{ $row->process_id }}</td>
+        <td width="50px" align="right">{{   number_format($cons,2) }}</td>
+        <td width="40px" align="right">{{ $row->rate }}</td>
+        <td width="60px" align="right">{{ number_format($row->amount,2) }}</td>
+        <td width="40px" align="right">{{ $row->overhead_rate }}</td>
+        <td width="60px" align="right">{{ number_format($row->overhead_amount,2) }}</td>
+        <td width="60px" align="right">{{ number_format($row->total_amount,2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $row->amount;
+    $ohtot+= $row->overhead_amount;
+    $ttot+= $row->total_amount;
+    $gtot+= $row->amount;
+    $gohtot+= $row->overhead_amount;
+    $gttot+= $row->total_amount;
+    $i++;
+    ?>
+    @endforeach
+    <tr>
+        <td width="418px" align="right">Sub Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+        <td width="40px" align="right"></td>
+        <td width="60px" align="right">{{ number_format($ohtot,2)}}</td>
+        <td width="60px" align="right">{{ number_format($ttot,2)}}</td>
+    </tr>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="418px" align="right">Grand Total</td>
+        <td width="60px" align="right">{{ number_format($gtot,2)}}</td>
+        <td width="40px" align="right"></td>
+        <td width="60px" align="right">{{ number_format($gohtot,2)}}</td>
+        <td width="60px" align="right">{{ number_format($gttot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+<br/>
+
+
+<caption>Yarn Dyeing Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="240px">Fabric Description</td>
+        <td width="88px">Process</td>
+        <td width="50px">BOM Qty.</td>
+        <td width="40px">Rate</td>
+        <td width="60px">Amount</td>
+        <td width="40px">Overhead Rate</td>
+        <td width="60px">Overhead Amount</td>
+        <td width="60px">Total Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $gtot=0;
+    $gohtot=0;
+    $gttot=0;
+    $ydamount=0;
+    ?>
+    @foreach($budget['yarndyeing'] as $processArr)
+    <?php 
+    $tot=0;
+    $ohtot=0;
+    $ttot=0;
+    
+    ?>
+    @foreach($processArr as $row)
+    <?php
+    $cons=$row->cons;
+    ?>
+    <tr>
+        <td width="240px"> {{ $row->budgetfabric }}</td>
+        <td width="88px">{{ $row->process_id }}</td>
+        <td width="50px" align="right">{{   number_format($cons,2) }}</td>
+        <td width="40px" align="right">{{ $row->rate }}</td>
+        <td width="60px" align="right">{{ number_format($row->amount,2) }}</td>
+        <td width="40px" align="right">{{ $row->overhead_rate }}</td>
+        <td width="60px" align="right">{{ number_format($row->overhead_amount,2) }}</td>
+        <td width="60px" align="right">{{ number_format($row->total_amount,2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $row->amount;
+    $ohtot+= $row->overhead_amount;
+    $ttot+= $row->total_amount;
+    $gtot+= $row->amount;
+    $gohtot+= $row->overhead_amount;
+    $gttot+= $row->total_amount;
+    $ydamount+= $row->total_amount;
+    $i++;
+    ?>
+    @endforeach
+    <tr>
+        <td width="418px" align="right">Sub Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+        <td width="40px" align="right"></td>
+        <td width="60px" align="right">{{ number_format($ohtot,2)}}</td>
+        <td width="60px" align="right">{{ number_format($ttot,2)}}</td>
+    </tr>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="418px" align="right">Grand Total</td>
+        <td width="60px" align="right">{{ number_format($gtot,2)}}</td>
+        <td width="40px" align="right"></td>
+        <td width="60px" align="right">{{ number_format($gohtot,2)}}</td>
+        <td width="60px" align="right">{{ number_format($gttot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+<br/>
+
+<caption>Trim Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170">Item Class</td>
+        <td  width="238">Description</td>
+        <td  width="70">Uom</td>
+        <td  width="50" align="right">BOM Qty.</td>
+        <td  width="50" align="right">Rate</td>
+        <td  width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totTrim=0;
+    ?>
+    @foreach($budget['trims'] as $row=>$value)
+    <?php
+    $cons=$value['cons'];
+    ?>
+    <tr>
+        <td width="170px"> {{ $value['name'] }}</td>
+        <td width="238px">{{ $value['description'] }}</td>
+        <td width="70px">{{ $value['code'] }}</td>
+        <td width="50px" align="right">{{   number_format($cons,2) }}</td>
+        <td width="50px" align="right">{{ number_format($value['rate'],2) }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $totTrim+= $value['amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="478px"></td>
+        <td width="50px"></td>
+        <td width="50px">Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+
+<br/>
+<caption>Embelishment & Wash Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="100px">Gmt. Item</td>
+        <td width="148px">Name</td>
+        <td width="70px">Type</td>
+        <td width="50px" align="right">Gmt. Qty</td>
+        <td width="50px" align="right">Rate</td>
+        <td width="60px" align="right">Amount</td>
+        <td width="40px">Overhead Rate</td>
+        <td width="60px">Overhead Amount</td>
+        <td width="60px">Total Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $ohtot=0;
+    $ttot=0;
+    $ttotemb=0;
+    ?>
+    @foreach($budget['embs'] as $row=>$value)
+    <?php
+    $cons=$value['cons'];
+    ?>
+    <tr>
+        <td width="100px"> {{ $value['item_description'] }}</td>
+        <td width="148px">{{ $value['embelishment_name'] }}</td>
+        <td width="70px">{{ $value['embelishment_type'] }}</td>
+        <td width="50px" align="right">{{   $cons }}</td>
+        <td width="50px" align="right">{{ number_format($value['rate'],2) }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+        <td width="40px" align="right">{{ number_format($value['overhead_rate'],2) }}</td>
+        <td width="60px" align="right">{{ number_format($value['overhead_amount'],2) }}</td>
+        <td width="60px" align="right">{{ number_format($value['overhead_amount']+$value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $ohtot+= $value['overhead_amount'];
+    $ttot+= $value['overhead_amount'];
+    $ttot+= $value['amount'];
+    $ttotemb+= $value['amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="318px"></td>
+        <td width="50px"></td>
+        <td width="50px">Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+        <td width="40px"></td>
+        <td width="60px" align="right">{{ number_format($ohtot,2)}}</td>
+        <td width="60px" align="right">{{ number_format($ttot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+<table border="0">
+<tr>
+<td>
+<caption>Other Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td width="170">Head</td>
+        <td width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totother=0;
+    ?>
+    @foreach($budget['other'] as $row=>$value)
+    <tr>
+        <td width="170px"> {{ $value['cost_head'] }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $totother+= $value['amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="170px">Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+<caption>CM Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170"></td>
+        <td  width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="170px"></td>
+        <td width="60px" align="right">{{ number_format($budget['cm'],2) }}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<br/>
+<caption>Commercial Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+     <tr align="center">
+        <td width="170" align="right">Rate</td>
+        <td width="60" align="right">Amount</td>
+     </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totComer=0;
+    ?>
+    @foreach($budget['commercial'] as $row=>$value)
+    <tr>
+        <td width="170px" align="right"> {{ $value['rate'] }} </td>
+        <td width="60px" align="right"> {{ number_format($value['amount'],2) }} </td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $totComer+= $value['amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="170px">Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+<br/>
+<caption>Commission Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170" align="right">Rate</td>
+        <td  width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <?php 
+    $i=1;
+    $tot=0;
+    $totCom=0;
+    ?>
+    @foreach($budget['commission'] as $row=>$value)
+    <tr>
+        <td width="170px" align="right"> {{ $value['rate'] }}</td>
+        <td width="60px" align="right">{{ number_format($value['amount'],2) }}</td>
+    </tr>
+    <?php 
+    $tot+= $value['amount'];
+    $totCom+= $value['amount'];
+    $i++;
+    ?>
+    @endforeach
+    </tbody>
+    <tfoot>
+    <tr>
+        <td width="170px">Total</td>
+        <td width="60px" align="right">{{ number_format($tot,2)}}</td>
+    </tr>
+    </tfoot>
+</table>
+<br/>
+<caption>Total Cost</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170"></td>
+        <td  width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="170px"></td>
+        <td width="60px" align="right">{{ number_format($budget['total_cost'],2) }}</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+<caption>Profit</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170"></td>
+        <td  width="60" align="right">Amount</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="170px"></td>
+        <td width="60px" align="right">{{ number_format($budget['master']->order_amount-$budget['total_cost'],2) }}</td>
+    </tr>
+    </tbody>
+</table>
+</td>
+<td align="top">
+    <?php
+    $impath=url('/')."/images/".$budget['master']->flie_src;
+    ?>
+    <img src="<?php echo $impath;?>" height="400" widht="500">
+</td>
+</tr>
+</table>
+
+
+
+<br/>
+<table border="0">
+<tr>
+<td width="400">
+<caption>Summary</caption>
+<br/>
+<table cellspacing="0" cellpadding="2" border="1">
+<thead>
+    <tr align="center">
+        <td  width="170">Head</td>
+        <td  width="60" align="right">Amount/Dzn</td>
+        <td  width="60" align="right">Amount</td>
+        <td  width="60" align="right">% Of FOB</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td width="170px">FOB</td>
+        <td width="60px" align="right">{{ number_format(($budget['master']->order_amount/$budget['master']->order_qty)*12,2) }} 
+        </td>
+        <td width="60px" align="right">{{ number_format($budget['master']->order_amount,2) }}
+        </td>
+        <td width="60px" align="right">
+        100 %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Fabric Purchase</td>
+        <td width="60px" align="right">{{number_format((($mtot+$tot)/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($mtot+$tot,2)}}
+        </td>
+        
+        <td width="60px" align="right">
+        {{number_format((($mtot+$tot)*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Yarn </td>
+        <td width="60px" align="right">{{number_format(($totYa/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($totYa,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($totYa*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    
+    @foreach ($fabproductionTot as $proc=>$procv)
+    <tr>
+        <td width="170px">{{$proc}} </td>
+        <td width="60px" align="right">{{number_format(($procv/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($procv,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($procv*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    @endforeach
+    <tr>
+        <td width="170px">Yarn Dyeing </td>
+        <td width="60px" align="right">{{number_format(($ydamount/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($ydamount,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($ydamount*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Trim </td>
+        <td width="60px" align="right">{{number_format(($totTrim/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($totTrim,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($totTrim*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Embelishment </td>
+        <td width="60px" align="right">{{number_format(($ttotemb/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($ttotemb,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($ttotemb*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Other </td>
+        <td width="60px" align="right">{{number_format(($totother/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{number_format($totother,2)}}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($totother*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">CM </td>
+        <td width="60px" align="right">{{number_format(($budget['cm']/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{ number_format($budget['cm'],2) }}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($budget['cm']*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Commercial </td>
+        <td width="60px" align="right">{{number_format(($totComer/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{ number_format($totComer,2) }}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($totComer*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Commission </td>
+        <td width="60px" align="right">{{number_format(($totCom/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{ number_format($totCom,2) }}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($totCom*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Total Cost </td>
+        <td width="60px" align="right">{{number_format(($budget['total_cost']/$budget['master']->order_qty)*12,2)}}
+        </td>
+        <td width="60px" align="right">{{ number_format($budget['total_cost'],2) }}
+        </td>
+        <td width="60px" align="right">
+        {{number_format(($budget['total_cost']*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+    <tr>
+        <td width="170px">Profit </td>
+        <td width="60px" align="right">{{number_format((($budget['master']->order_amount-$budget['total_cost'])/$budget['master']->order_qty)*12,2)}}
+        </td>
+
+        <td width="60px" align="right">{{ number_format($budget['master']->order_amount-$budget['total_cost'],2) }}
+        </td>
+        <td width="60px" align="right">
+        {{number_format((($budget['master']->order_amount-$budget['total_cost'])*100)/$budget['master']->order_amount,2)}} %
+        </td>
+    </tr>
+
+   
+    </tbody>
+</table>
+</td>
+<td width="300">
+    <?php
+    $fabprocesslossper=((($mtotcons+$totcons)-($mtotfincons+$totfincons))*100)/($mtotcons+$totcons);
+    $excesscutper=(($budget['master']->plan_cut_qty-$budget['master']->order_qty)*100)/$budget['master']->plan_cut_qty;
+    ?>
+    <br/>
+    <br/>
+    <br/>
+    Fabric Process Loss % {{number_format($fabprocesslossper,2)}}
+    <br/>
+    Excess Cut % {{number_format($excesscutper,2)}}
+</td>
+ </tr>
+</table>
+<br/>
+<br/>
+<br/>
+<br/>
+<table>
+    <tr align="center">
+        <td width="106">
+            Prepared By
+        </td>
+        <td width="106">
+            Dealing Merchant
+        </td>
+        <td width="106">
+              Head Of Merchandising
+        </td>
+        <td width="106">
+            Head Of Marketing
+        </td>
+        <td width="106">
+            Head Of Finance
+        </td>
+        <td width="106">
+            Managing Director
+        </td>
+    </tr>
+    <tr align="center">
+        <td width="106">
+            
+            {{ $budget['master']->user_name }}<br/>
+            {{ date('d-M-Y',strtotime($budget['master']->created_at)) }}
+            
+        </td>
+        <td width="106">
+        </td>
+        <td width="106"></td>
+        <td width="106"></td>
+        <td width="106"></td>
+        
+    </tr>
+</table>

@@ -1,0 +1,26 @@
+<?php
+namespace App\Repositories\Implementations\Eloquent\Commercial\Export;
+use App\Repositories\Contracts\Commercial\Export\ExpInvoiceRepository;
+use App\Model\Commercial\Export\ExpInvoice;
+use App\Traits\Eloquent\MsTraits; 
+class ExpInvoiceImplementation implements ExpInvoiceRepository
+{
+	use MsTraits;
+	
+	/**
+	 * @var $model
+	 */
+	private $model;
+ 
+	/**
+	 * MsSysUserImplementation constructor.
+	 *
+	 * @param App\User $model
+	 */
+	public function __construct(ExpInvoice $model)
+	{
+		$this->model = $model;
+	}
+	
+	
+}

@@ -1,0 +1,1090 @@
+<div title="Technical Image" style="padding:2px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'west',border:true,title:'Add Image',iconCls:'icon-more',footer:'#assetimageft'" style="width:450px; padding:2px">
+                <form id="assettechfileuploadFrm">
+                    <div id="container">
+                        <div id="body">
+                            <code>
+                                <div class="row">
+                                    <input type="hidden" name="id" id="id" value="" />
+		      <input type="hidden" name="asset_technical_feature_id" id="asset_technical_feature_id" value=""/>
+                                </div>
+                                <div class="row middle">
+                                   <div class="col-sm-4 req-text">Image</div>
+                                   <div class="col-sm-8">
+                                    	<input type="file" id="img_upload" name="img_upload" />
+                                    	<!-- onchange="MsAssetTechImage.loadImage(event)"-->
+                                   </div>
+                            	  </div>
+                                
+                            </code>
+                        </div>
+                    </div>
+                    <div id="assetimageft" style="padding:0px 0px; text-align:right; background:#F3F3F3;">
+                        <a href="javascript:void(0)" class="easyui-linkbutton  c1" style="height:25px; border-radius:1px" iconCls="icon-save" plain="true" id="save" onClick="MsAssetTechFileUpload.submit()">Save</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton c6" style="height:25px;border-radius:1px" iconCls="icon-remove" plain="true" id="delete" onClick="msApp.resetForm('assettechfileuploadFrm')">Reset</a>
+                        <a href="javascript:void(0)" class=" easyui-linkbutton c5" style="height:25px;border-radius:1px" iconCls="icon-remove" plain="true" id="delete" onClick="MsAssetTechFileUpload.remove()">Delete</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div data-options="region:'center',border:true,title:'List'" style="padding:2px">
+                <table id="assettechfileuploadTbl" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th data-options="field:'id'" width="80">ID</th>
+                            <th data-options="field:'file_upload'" width="80">Upload Files</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+
+
+
+
+
+
+submit()
+	{
+		// var id=$('#assettechfeatureFrm [name=id]').val();
+		// var asset_acquisition_id=$('#assettechfeatureFrm [name=asset_acquisition_id]').val();
+		// var die_width=$('#assettechfeatureFrm [name=die_width]').val();
+		// var gauge=$('#assettechfeatureFrm [name=gauge]').val();
+		// var extra_cylinder=$('#assettechfeatureFrm [name=extra_cylinder]').val();
+		// var no_of_feeder=$('#assettechfeatureFrm [name=no_of_feeder]').val();
+		// var attachment=$('#assettechfeatureFrm [name=attachment]').val();
+		// var uploadfile=$('#assettechfeatureFrm [name=uploadfile]').val();
+		// var image=$('#assettechfeatureFrm [name=image]').val();
+		// // var data={};
+		// // data.id=id;
+		// // data.asset_acquisition_id=asset_acquisition_id;
+		// // data.die_width=die_width;
+		// // data.gauge=gauge;
+		// // data.die_width=die_width;
+		// // data.extra_cylinder=extra_cylinder;
+		// // data.no_of_feeder=no_of_feeder;
+		// // data.attachment=attachment;
+		// // data.attachment=uploadfile;
+		// // data.attachment=image;
+		// var formData = new FormData();
+		// //formData.append("id",id+"asset_acquisition_id",asset_acquisition_id+"die_width",die_width+"gauge",gauge+"extra_cylinder",extra_cylinder+"no_of_feeder",no_of_feeder+"attachment",attachment+"uploadfile",uploadfile+"image",image);
+		// formData.append("id",id);
+		// formData.append("asset_acquisition_id",asset_acquisition_id);
+		// formData.append("die_width",die_width);
+		// formData.append("gauge",gauge);
+		// formData.append("extra_cylinder",extra_cylinder);
+		// formData.append("no_of_feeder",no_of_feeder);
+		// formData.append("attachment",attachment);
+		// formData.append("uploadfile",uploadfile);
+		// formData.append("image",image);
+
+		// var uploadfile=document.getElementById("uploadfile");
+		// var image=document.getElementById("image");
+		// formData.append("uploadfile",uploadfile.files[0]);
+		// formData.append("image",image.files[0]);
+		//alert(formData);
+		//this.MsAssetTechnicalFeatureModel.save(this.route+"/",'POST',formData,this.response);
+
+
+
+	 
+		let formObj=msApp.get(this.formId);
+		if(formObj.id){
+			this.MsAssetTechnicalFeatureModel.save(this.route+"/"+formObj.id,'PUT',msApp.qs.stringify(formObj),this.response);
+		}else{
+			this.MsAssetTechnicalFeatureModel.save(this.route,'POST',msApp.qs.stringify(formObj),this.response);
+		}
+		// if(id){
+		// 	this.MsAssetTechnicalFeatureModel.save(this.route+"/"+id,'PUT',formData,this.response);
+		// }else{
+		// 	this.MsAssetTechnicalFeatureModel.upload(this.route,'POST',formData,this.response);
+		// }
+	}
+        </div>
+    </div>
+
+```````````````````````````````````````SUM FUNCTION``````````````````````````````````````
+===========================================================
+//alert(parseFloat(1,2));
+		//for(var i=iteration;i<=count;i++){
+			/* let vendor_price = +($('#assetquantitycostFrm [name="vendor_price['+iteration+']"]').val());
+			let landed_price = +($('#assetquantitycostFrm [name="landed_price['+iteration+']"]').val());
+			let machanical_cost = +($('#assetquantitycostFrm [name="machanical_cost['+iteration+']"]').val());
+			let civil_cost = +($('#assetquantitycostFrm [name="civil_cost['+iteration+']"]').val());
+			let electrical_cost = +($('#assetquantitycostFrm [name="electrical_cost['+iteration+']"]').val());
+			let total_cost =Math.floor(vendor_price+landed_price+machanical_cost+civil_cost+electrical_cost); *
+
+)))))))))))))))))))))))******************  To sum one column  *********************(((((((((((((((((((((((((((((((((((
+
+$total = 0;
+if ($activities) {
+  foreach ($activities as $activity) {
+    $price = $activity['price'];
+    if($price) {
+        echo $price; // do you still need this?
+        $total += $price;
+    }
+  }
+}
+
+$total = array_sum(array_filter(array_values($activities)));
+echo $total;
+
+==========================================================================================
+$invpurreq=$this->invpurreq->find(request('inv_pur_req_id',0));
+
+        $itemaccounts=$this->itemaccount
+        ->join('itemcategories',function($join){
+            $join->on('itemcategories.id','=','item_accounts.itemcategory_id');
+        })
+        ->join('itemclasses',function($join){
+            $join->on('itemclasses.id','=','item_accounts.itemclass_id');
+        })
+        ->join('item_accounts',function($join){
+            $join->on('item_accounts.id','=','inv_pur_req_items.item_account_id');
+        })
+        // ->leftJoin('yarncounts',function($join){
+        //     $join->on('yarncounts.id','=','item_accounts.yarncount_id');
+        // })
+        // ->leftJoin('yarntypes',function($join){
+        //     $join->on('yarntypes.id','=','item_accounts.yarntype_id');
+        // })
+        // ->leftJoin('compositions',function($join){
+        //     $join->on('compositions.id','=','item_accounts.composition_id');
+        // })
+        // ->leftJoin('colors',function($join){
+        // $join->on('colors.id','=','item_accounts.color_id');
+        // })
+        // ->leftJoin('sizes',function($join){
+        //     $join->on('sizes.id','=','item_accounts.size_id');
+        // })
+        // ->leftJoin('uoms',function($join){
+        //     $join->on('uoms.id','=','item_accounts.uom_id');
+        // })
+        // ->when(request('id'), function ($q) {
+        //     return $q->where('item_accounts.id', '=', request('id', 0));
+        // })
+        //->orderBy('item_accounts.id','desc')
+        ->get([
+            'item_accounts.*',
+            'itemcategories.name',
+            'itemclasses.name as class_name',
+            /* 'yarncounts.count',
+            'yarncounts.symbol',
+            'yarntypes.name as yarn_type',
+            'compositions.name as composition',
+            'colors.name as color',
+            'sizes.name as size',
+            'uoms.code as uom' */
+        ])
+        ->groupBy('id')
+        ->map(function($itemaccount,$key){
+            return $itemaccount->implode('item_description',',');
+        })
+        ->toArray();
+        //echo json_encode($itemaccounts);
+
+        $items=$this->itemaccount
+        ->selectRaw('
+        item_accounts.id,
+        item_accounts.item_description,
+        inv_pur_req_items.item_account_id,
+        inv_pur_req_items.qty,
+        inv_pur_req_items.rate,
+        inv_pur_req_items.amount
+        ')
+        ->join('item_accounts',function($join){
+            $join->on('item_accounts.id','=','inv_pur_req_items.item_account_id');
+        })
+        ->leftJoin('inv_pur_req_items',function($join) use($invpurreq){
+            $join->on('inv_pur_req_items.item_account_id','=','item_accounts.id');
+            $join->where([['inv_pur_req_items.inv_pur_req_id','='.$invpurreq->id]]);
+        })
+        ->when(request('itemcategory_id'), function ($q) {
+            return $q->where('itemcategories.itemcategory_id', 'LIKE', "%".request('itemcategory_id', 0)."%");
+        })
+        ->when(request('itemclass_id'), function ($q) {
+            return $q->where('itemclasses.itemclass_id', 'LIKE', "%".request('itemclass_id', 0)."%");
+        })
+        ->groupBy([
+            'item_accounts.id',
+            'item_accounts.item_description',
+            'inv_pur_req_items.item_account_id',
+            'inv_pur_req_items.qty',
+            'inv_pur_req_items.rate',
+            'inv_pur_req_items.amount'
+        ])
+        ->get()
+        ->map(function($items) use($itemaccounts){
+            $items->item_description=$itemaccount[$items->id];
+            return $items;
+        });
+        $notsaved = $items->filter(function ($value) {
+            if(!$value->item_account_id){
+                return $value;
+            }
+        })->values();
+       echo json_encode($notsaved);
+        
+    }
+
+
+
+
+
+
+
+
+
+
+{{-- str_pad($qtycost->id,6,0,STR_PAD_LEFT ) --}}
+
+
+
+
+
+
+
+<?php
+
+namespace App\Http\Controllers\FAMS;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\FAMS\AssetAcquisitionRepository;
+use App\Repositories\Contracts\FAMS\AssetQuantityCostRepository;
+
+use App\Library\Template;
+use App\Http\Requests\FAMS\AssetQuantityCostRequest;
+
+class AssetQuantityCostController extends Controller {
+
+    private $assetacquisition;
+    private $assetquantitycost;
+
+
+    public function __construct(AssetAcquisitionRepository $assetacquisition,AssetQuantityCostRepository $assetquantitycost) {
+        $this->assetacquisition = $assetacquisition;
+        $this->assetquantitycost = $assetquantitycost;
+
+
+        $this->middleware('auth');
+        //$this->middleware('permission:view.buyernatures',   ['only' => ['create', 'index','show']]);
+        //$this->middleware('permission:create.buyernatures', ['only' => ['store']]);
+        //$this->middleware('permission:edit.buyernatures',   ['only' => ['update']]);
+        //$this->middleware('permission:delete.buyernatures', ['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() {
+        $assetacquisition=array_prepend(array_pluck($this->assetacquisition->get(),'name','id'),'-Select-','');
+        $assetquantitycosts=array();
+        $rows=$this->assetquantitycost->where([['asset_acquisition_id','=',request('asset_acquisition_id',0)]])->get();
+        foreach($rows as $row){
+            $assetquantitycost['id']=$row->id;
+            $assetquantitycost['asset_no']=$row->asset_no;
+            $assetquantitycost['asset_acquisition_id']=$assetacquisition[$row->asset_acquisition_id];
+            $assetquantitycost['serial_no']=$row->serial_no;
+            $assetquantitycost['qty']=$row->qty;
+            $assetquantitycost['rate']=$row->rate;
+            $assetquantitycost['vendor_price']=$row->vendor_price=(($row->qty)*($row->rate));
+            $assetquantitycost['landed_price']=$row->landed_price;
+            $assetquantitycost['machanical_cost']=$row->machanical_cost;
+            $assetquantitycost['civil_cost']=$row->civil_cost;
+            $assetquantitycost['electrical_cost']=$row->electrical_cost;
+            $assetquantitycost['warrantee_close']=date('Y-m-d',strtotime($row->warrantee_close));        
+            $assetquantitycost['total_cost']=$row->total_cost;
+            array_push($assetquantitycosts, $assetquantitycost);
+        }
+        echo json_encode($assetquantitycosts);
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        //['asset_acquisition_id'=>request('id',0) ,
+        $assetquantitycost=$this->assetquantitycost
+        ->selectRaw(
+            'asset_acquisitions.qty,
+            asset_acquisitions.type_id,
+            asset_quantity_costs.id,
+            asset_quantity_costs.asset_acquisition_id,
+            asset_quantity_costs.asset_no,
+            asset_quantity_costs.serial_no,
+            asset_quantity_costs.qty,
+            asset_quantity_costs.rate,
+            asset_quantity_costs.vendor_price,
+            asset_quantity_costs.landed_price,
+            asset_quantity_costs.machanical_cost,
+            asset_quantity_costs.civil_cost,
+            asset_quantity_costs.electrical_cost,
+            asset_quantity_costs.total_cost,
+            asset_quantity_costs.warrantee_close'
+        )
+        ->join('asset_acquisitions',function($join){
+            $join->on('asset_acquisitions.id','=','asset_quantity_costs.asset_acquisition_id');
+        })
+        ->where([['asset_acquisition_id','=',request('id',0)]])
+        ->get([
+            'asset_acquisitions.id as asset_acquisition_id',
+            'asset_acquisitions.qty',
+            'asset_acquisitions.type_id',
+            'asset_quantity_costs.rate'
+        ]);
+        //echo json_encode($assetquantitycost);
+
+        //$dropdown['qtc'] = "'".Template::loadView('FAMS.SetAssetQuantity',['asset_acquisition_id'=>request('id',0),'qty'=>request('qty',0),'assetquantitycost'=>$assetquantitycost])."'";
+        //$row ['dropDown'] = $dropdown;
+        //echo json_encode($row);
+
+        if($assetquantitycost->count()){
+            return Template::loadView('FAMS.EditAssetQuantity',['asset_acquisition_id'=>request('id',0),'data'=>$assetquantitycost,'qty'=>request('qty',0)]);
+
+        }else{
+                   return Template::loadView('FAMS.SetAssetQuantity',['asset_acquisition_id'=>request('id',0),'qty'=>request('qty',0)]);
+ 
+        }
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AssetQuantityCostRequest $request) {
+        if($request->is_edit==0){
+              foreach($request->asset_acquisition_id as $index=>$asset_acquisition_id){
+                if($request->qty[$index]){
+                     $assetquantitycost = $this->assetquantitycost->updateOrCreate(
+                    ['asset_acquisition_id' => $request->asset_acquisition_id[$index]
+                ],
+                    ['qty' => $request->qty[$index],
+                    'rate' => $request->rate[$index],
+                    'vendor_price' =>$request->vendor_price[$index],
+                    'landed_price'=>$request->landed_price[$index],
+                    'machanical_cost'=>$request->machanical_cost[$index],
+                    'civil_cost'=>$request->civil_cost[$index],
+                    'electrical_cost'=>$request->electrical_cost[$index],'warrantee_close'=>$request->warrantee_close[$index],
+                    'total_cost'=>$request->total_cost[$index],
+                    'asset_no'=>$request->asset_no[$index],
+                    'serial_no'=>$request->serial_no[$index]
+                    ]);                   
+                }
+            }
+            if($assetquantitycost)
+            {
+                return response()->json(array('success' => true, 'id' => $assetquantitycost->id, 'message' => 'Save Successfully'), 200);
+            }
+        }
+        if($request->is_edit==1){
+             $this->update($request,$request->id);
+             return response()->json(array('success' => true, 'id'=>$request->id,'message'=>'Update Successfully'),200);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id) {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+       $assetquantitycost=$this->assetquantitycost->find($id);
+       $row['fromData']=$assetquantitycost;
+       $dropdown['att'] = '';
+       $row ['dropDown'] = $dropdown;
+       echo json_encode($row);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(AssetQuantityCostRequest $request, $id) {
+        foreach($request->asset_acquisition_id as $index=>$asset_acquisition_id){
+            if($request->qty[$index]){
+                 $assetquantitycost = $this->assetquantitycost->update($request->id[$index],
+                [
+                'asset_acquisition_id' => $request->asset_acquisition_id[$index],
+                'asset_no'=>$request->asset_no[$index],
+                'serial_no'=>$request->serial_no[$index],
+                'qty' => $request->qty[$index],
+                'rate' => $request->rate[$index],
+                'vendor_price' =>$request->vendor_price[$index],
+                'landed_price'=>$request->landed_price[$index],
+                'machanical_cost'=>$request->machanical_cost[$index],
+                'civil_cost'=>$request->civil_cost[$index],
+                'electrical_cost'=>$request->electrical_cost[$index],
+                'warrantee_close'=>$request->warrantee_close[$index],
+                'total_cost'=>$request->total_cost[$index]
+                ]);                   
+            }
+        }
+   
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        if($this->assetquantitycost->delete($id)){
+            return response()->json(array('success' => true,'message' => 'Delete Successfully'),200);
+		}
+        
+    }
+
+}
+
+====================================================================================
+====================================================================================
+<?php
+
+namespace App\Http\Controllers\Commercial\Export;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\Commercial\Export\ExpSalesContractRepository;
+use App\Repositories\Contracts\Commercial\Export\ExpScOrderRepository;
+use App\Repositories\Contracts\Commercial\Export\ExpSalesContractPiRepository;
+use App\Repositories\Contracts\Util\CurrencyRepository;
+use App\Repositories\Contracts\Util\CompanyRepository;
+use App\Repositories\Contracts\Util\BuyerRepository;
+use App\Repositories\Contracts\Util\BuyerBranchRepository;
+use App\Repositories\Contracts\Util\SupplierRepository;
+use App\Repositories\Contracts\Util\BankRepository;
+use App\Repositories\Contracts\Sales\SalesOrderRepository;
+use App\Repositories\Contracts\Sales\JobRepository;
+use App\Repositories\Contracts\Marketing\StyleRepository;
+use App\Repositories\Contracts\Util\ItemAccountRepository;
+use App\Repositories\Contracts\Commercial\Export\ExpPiRepository;
+use App\Repositories\Contracts\Commercial\Export\ExpPiOrderRepository;
+
+use App\Repositories\Contracts\Bom\BudgetFabricRepository;
+use App\Repositories\Contracts\Bom\BudgetRepository;
+use App\Repositories\Contracts\Util\GmtspartRepository;
+use App\Repositories\Contracts\Util\AutoyarnRepository;
+use App\Repositories\Contracts\Util\ColorrangeRepository;
+
+use App\Library\Template;
+use App\Http\Requests\Commercial\Export\ExpSalesContractRequest;
+
+class ExpSalesContractController extends Controller {
+
+    private $expsalescontract;
+    private $currency;
+    private $buyer;
+    private $supplier;
+    private $bank;
+    private $company;
+    private $exppiorder;
+    private $buyerbranch;
+
+    private $budgetfabric;
+    private $budget;
+    private $gmtspart;
+    private $autoyarn;
+    private $colorrange;
+
+    public function __construct(ExpSalesContractRepository $expsalescontract,CurrencyRepository $currency,BuyerRepository $buyer,SupplierRepository $supplier,BankRepository $bank,CompanyRepository $company,ExpScOrderRepository $expscorder,ItemAccountRepository $itemaccount, SalesOrderRepository $salesorder, StyleRepository $style, JobRepository $job,ExpPiRepository $exppi, ExpPiOrderRepository $exppiorder,ExpSalesContractPiRepository $salescontractpi, BuyerBranchRepository $buyerbranch, 
+    BudgetFabricRepository $budgetfabric,BudgetRepository $budget,GmtspartRepository $gmtspart,AutoyarnRepository $autoyarn,ColorrangeRepository $colorrange
+    ) {
+        $this->expsalescontract = $expsalescontract;
+        $this->currency = $currency;
+        $this->buyer = $buyer;
+        $this->supplier = $supplier;
+        $this->bank = $bank;
+        $this->company = $company;
+        $this->buyerbranch = $buyerbranch;
+
+        $this->expscorder = $expscorder;
+        $this->itemaccount = $itemaccount;
+        $this->salesorder = $salesorder;
+        $this->job = $job;
+        $this->style = $style;
+        $this->exppi = $exppi;
+        $this->exppiorder = $exppiorder;
+        $this->salescontractpi = $salescontractpi;
+
+        $this->budgetfabric = $budgetfabric;
+        $this->budget = $budget;
+        $this->gmtspart = $gmtspart;
+        $this->autoyarn = $autoyarn;
+        $this->colorrange = $colorrange;
+
+        $this->middleware('auth');
+        //$this->middleware('permission:view.buyernatures',   ['only' => ['create', 'index','show']]);
+        //$this->middleware('permission:create.buyernatures', ['only' => ['store']]);
+        //$this->middleware('permission:edit.buyernatures',   ['only' => ['update']]);
+        //$this->middleware('permission:delete.buyernatures', ['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() {
+        $company=array_prepend(array_pluck($this->company->get(),'code','id'),'-Select-','');
+        $currency=array_prepend(array_pluck($this->currency->get(),'code','id'),'-Select-','');
+        $buyer=array_prepend(array_pluck($this->buyer->get(),'code','id'),'-Select-','');
+        //$supplier=array_prepend(array_pluck($this->supplier->get(),'name','id'),'-Select-','');
+        //$bank=array_prepend(array_pluck($this->bank->get(),'name','id'),'-Select-','');
+        //$payterm = array_prepend(config('bprs.payterm'), '-Select-','');
+        //$incoterm = array_prepend(config('bprs.incoterm'), '-Select-','');
+        //$exportingItem = array_prepend(config('bprs.exportingItem'), '-Select-','');
+        //$deliveryMode = array_prepend(config('bprs.deliveryMode'), '-Select-','');
+        $contractNature = array_prepend(config('bprs.contractNature'), '-Select-','');
+         
+        $expsalescontracts=array();
+        $rows=$this->expsalescontract->where([['sc_or_lc','=',1]])->get();
+        foreach($rows as $row){
+            $expsalescontract['id']=$row->id;
+            $expsalescontract['contract_no']=$row->contract_no;
+            $expsalescontract['beneficiary']=$company[$row->beneficiary_id];//combo
+            $expsalescontract['buyer']=$buyer[$row->buyer_id];
+            $expsalescontract['contract_date']=date('Y-m-d',strtotime($row->contract_date));
+            $expsalescontract['contract_nature']=$contractNature[$row->contract_nature_id];
+            $expsalescontract['contract_value']=$row->contract_value;
+            $expsalescontract['currency']=$currency[$row->currency_id];
+            $expsalescontract['exch_rate']=$row->exch_rate;
+            /*$expsalescontract['pay_term_id']=$payterm[$row->pay_term_id];
+            $expsalescontract['tenor']=$row->tenor;
+            $expsalescontract['incoterm_id']=$incoterm[$row->incoterm_id];
+            $expsalescontract['incoterm_place']=$row->incoterm_place;
+            $expsalescontract['exporting_item_id']=$exportingItem[$row->exporting_item_id];
+            
+            $expsalescontract['buyers_bank_id']=$row->buyers_bank_id;
+            $expsalescontract['exporters_bank_id']=$row->exporters_bank_id;//combo
+            $expsalescontract['lien_date']=date('Y-m-d',strtotime($row->lien_date));
+            $expsalescontract['re_imbursing_bank_id']=$row->re_imbursing_bank_id;
+            $expsalescontract['consignee_id']=$row->consignee_id;//combo from supplier
+            $expsalescontract['notifying_party_id']=$row->notifying_party_id;// combo from supplier
+            $expsalescontract['last_delivery_date']=date('Y-m-d',strtotime($row->last_delivery_date));
+            $expsalescontract['delivery_mode_id']=$deliveryMode[$row->delivery_mode_id];
+            $expsalescontract['port_of_entry']=$row->port_of_entry;
+            $expsalescontract['port_of_loading']=$row->port_of_loading;
+            $expsalescontract['port_of_discharge']=$row->port_of_discharge;
+            $expsalescontract['final_destination']=$row->final_destination;
+            $expsalescontract['etd_port']=$row->etd_port;
+            $expsalescontract['eta_port']=$row->eta_port;
+            $expsalescontract['hs_code']=$row->hs_code;
+            $expsalescontract['forwarding_agent_id']=$row->forwarding_agent_id;//combo
+            $expsalescontract['shipping_line_id']=$row->shipping_line_id;//combo
+            $expsalescontract['remarks']=$row->remarks;*/
+            array_push($expsalescontracts,$expsalescontract);
+        }
+        echo json_encode($expsalescontracts);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        $company=array_prepend(array_pluck($this->company->get(),'name','id'),'-Select-','');
+        $currency=array_prepend(array_pluck($this->currency->get(),'name','id'),'-Select-','');
+        $buyer=array_prepend(array_pluck($this->buyer->get(),'name','id'),'-Select-','');
+        $supplier=array_prepend(array_pluck($this->supplier->get(),'name','id'),'-Select-','');
+        $bank=array_prepend(array_pluck($this->bank->get(),'name','id'),'-Select-','');
+        $payterm = array_prepend(config('bprs.payterm'), '-Select-','');
+        $incoterm = array_prepend(config('bprs.incoterm'), '-Select-','');
+        $exportingItem = array_prepend(config('bprs.exportingItem'), '-Select-','');
+        $deliveryMode = array_prepend(config('bprs.deliveryMode'), '-Select-','');
+        $contractNature = array_prepend(config('bprs.contractNature'), '-Select-','');
+        $consignee=array_prepend(array_pluck($this->buyer->consignee(),'name','id'),'-Select-','');
+        $notifyingParties=array_prepend(array_pluck($this->buyer->notifyingParties(),'name','id'),'-Select-','');
+
+        $forwardingAgents=array_prepend(array_pluck($this->supplier->forwardingAgents(),'name','id'),'-Select-','');
+        $shippingLines=array_prepend(array_pluck($this->supplier->shippingLines(),'name','id'),'-Select-','');
+        
+
+        return Template::LoadView('Commercial.Export.ExpSalesContract',['company'=>$company,'currency'=>$currency,'buyer'=>$buyer,'supplier'=>$supplier,'bank'=>$bank,'payterm'=>$payterm,'incoterm'=>$incoterm,'exportingItem'=>$exportingItem,'deliveryMode'=>$deliveryMode,'contractNature'=>$contractNature,'consignee'=>$consignee,'notifyingParties'=>$notifyingParties,'forwardingAgents'=>$forwardingAgents,'shippingLines'=>$shippingLines]);
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(ExpSalesContractRequest $request) {
+        $request->request->add(['sc_or_lc' =>1]);
+		$expsalescontract=$this->expsalescontract->create($request->except(['id']));
+		if($expsalescontract){
+			return response()->json(array('success' => true,'id' =>  $expsalescontract->id,'message' => 'Save Successfully'),200);
+		}
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id) {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id) {
+       $expsalescontract = $this->expsalescontract->find($id);
+	   $row ['fromData'] = $expsalescontract;
+	   $dropdown['att'] = '';
+	   $row ['dropDown'] = $dropdown;
+       echo json_encode($row); 
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ExpSalesContractRequest $request, $id) {
+        $expsalescontract=$this->expsalescontract->update($id,$request->except(['id']));
+		if($expsalescontract){
+			return response()->json(array('success' => true,'id' => $id,'message' => 'Update Successfully'),200);
+		}  
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id) {
+        if($this->expsalescontract->delete($id)){
+            return response()->json(array('success' => true,'message' => 'Delete Successfully'),200);
+        }
+    }
+    
+    public function getPdf () {
+        $id=request('id',0);
+
+        $company=array_prepend(array_pluck($this->company->get(),'name','id'),'','');
+        $currency=array_prepend(array_pluck($this->currency->get(),'code','id'),'','');
+        $buyer=array_prepend(array_pluck($this->buyer->get(),'name','id'),'','');
+        $contractNature = array_prepend(config('bprs.contractNature'), '','');
+        $consignee=array_prepend(array_pluck($this->buyer->consignee(),'name','id'),'','');
+        $notifyingParties=array_prepend(array_pluck($this->buyer->notifyingParties(),'name','id'),'','');
+        $bank=array_prepend(array_pluck($this->bank->get(),'name','id'),'','');
+        $payterm = array_prepend(config('bprs.payterm'), '','');
+        
+
+        $expsalescontracts=array();
+        $rows=$this->expsalescontract->where([['sc_or_lc','=',1]])->get();
+        foreach($rows as $row){
+            $expsalescontract['id']=$row->id;
+            $expsalescontract['contract_no']=$row->contract_no;
+            $expsalescontract['beneficiary_id']=$company[$row->beneficiary_id];
+            $expsalescontract['company_id']=$row->beneficiary_id;
+            $expsalescontract['buyer']=$buyer[$row->buyer_id];
+            $expsalescontract['buyer_id']=$row->buyer_id;
+            $expsalescontract['contract_date']=date('Y-m-d',strtotime($row->contract_date));
+            $expsalescontract['contract_nature']=$contractNature[$row->contract_nature_id];
+            $expsalescontract['consignee_id']=$consignee[$row->consignee_id];
+            $expsalescontract['notifying_party_id']=$notifyingParties[$row->notifying_party_id];
+            $expsalescontract['buyers_bank']=$row->buyers_bank;
+            $expsalescontract['contract_value']=$row->contract_value;
+            $expsalescontract['currency']=$currency[$row->currency_id];
+            $expsalescontract['pay_term_id']=$payterm[$row->pay_term_id];
+            $expsalescontract['exporters_bank_id']=$bank[$row->exporters_bank_id];
+            $expsalescontract['bank_id']=$row->exporters_bank_id;
+            //array_push($expsalescontracts,$expsalescontract);
+        }
+        //echo json_encode($expsalescontracts);
+        $orders=$this->salesorder
+        ->selectRaw(
+			'budgets.id as budget_id,
+			style_fabrications.id as style_fabrication_id,
+			style_fabrications.material_source_id,
+			style_fabrications.fabric_nature_id,
+			style_fabrications.fabric_look_id,
+			style_fabrications.fabric_shape_id,
+			gmtsparts.name as gmtspart_name,
+			budget_fabrics.gsm_weight,
+			budget_fabrics.id'
+        )
+       ->join('jobs', function($join)  {
+            $join->on('jobs.id', '=', 'sales_orders.job_id');
+        })
+       ->join('styles', function($join)  {
+            $join->on('styles.id', '=', 'jobs.style_id');
+        })
+        ->join('companies', function($join)  {
+            $join->on('companies.id', '=', 'jobs.company_id');
+        })
+       ->join('sales_order_gmt_color_sizes', function($join)  {
+            $join->on('sales_order_gmt_color_sizes.sale_order_id', '=', 'sales_orders.id');
+        })
+        ->join('style_gmts',function($join){
+            $join->on('style_gmts.id','=','sales_order_gmt_color_sizes.style_gmt_id');
+        })
+        ->join('item_accounts', function($join) {
+            $join->on('item_accounts.id', '=', 'style_gmts.item_account_id');
+        })
+        ->join('uoms', function($join)  {
+            $join->on('styles.uom_id', '=', 'uoms.id');
+        })
+        ->join('exp_pi_orders', function($join)  {
+            $join->on('exp_pi_orders.sales_order_id', '=', 'sales_orders.id');
+        })
+        ->join('exp_pis', function($join)  {
+            $join->on('exp_pis.id', '=', 'exp_pi_orders.exp_pi_id');
+        })
+        ->join('exp_sales_contract_pis', function($join)  {
+            $join->on('exp_sales_contract_pis.exp_pi_id', '=', 'exp_pis.id');
+        })
+
+        ->join('budgets',function($join){
+            $join->on('budgets.style_id','=','styles.id');
+        })
+        ->join('style_fabrications',function($join){
+            $join->on('style_fabrications.style_id','=','budgets.style_id');
+        })
+        ->join('style_gmts',function($join){
+            $join->on('style_gmts.id','=','style_fabrications.style_gmt_id');
+        })
+        ->join('gmtsparts',function($join){
+            $join->on('gmtsparts.id','=','style_fabrications.gmtspart_id');
+        })
+        ->join('autoyarns',function($join){
+            $join->on('autoyarns.id','=','style_fabrications.autoyarn_id');
+        })
+    
+        ->leftJoin('budget_fabrics',function($join){
+            $join->on('budget_fabrics.budget_id','=','budgets.id');
+            $join->on('budget_fabrics.style_fabrication_id','=','style_fabrications.id');
+        })
+        ->leftJoin('budget_fabric_cons',function($join){
+            $join->on('budget_fabric_cons.budget_fabric_id','=','budget_fabrics.id');
+        })
+
+        ->where([['exp_sales_contract_pis.exp_sales_contract_id','=', request('id',0)]])
+       ->get([
+        'exp_pi_orders.id',
+        'sales_orders.id as sales_order_id',
+        'sales_orders.sale_order_no',
+        'sales_orders.ship_date',
+        'jobs.company_id',
+        'companies.name as company_id',
+        'styles.style_ref',
+        'jobs.job_no',
+        'uoms.code as uom_name',
+        'item_accounts.id as item_account_id',
+        'item_accounts.item_description',
+        'exp_pi_orders.qty',
+        'exp_pi_orders.rate',
+        'exp_pi_orders.amount',
+
+        'budgets.id',
+        'style_fabrications.id',
+        'style_fabrications.material_source_id',
+        'style_fabrications.fabric_nature_id',
+        'style_fabrications.fabric_look_id',
+        'item_accounts.item_description',
+        'style_fabrications.fabric_shape_id',
+        'budget_fabrics.gsm_weight',
+        'budget_fabrics.id',
+       ]);
+       $row=array();
+       $rows=array();
+       foreach($orders as $order){
+        $row[$order->id]['id']=$order->id;
+        $row[$order->id]['sale_order_no']=$order->sale_order_no;
+        $row[$order->id]['company_id']=$order->company_id;
+        $row[$order->id]['ship_date']=$order->ship_date;
+        $row[$order->id]['sales_order_id']=$order->sales_order_id;
+        $row[$order->id]['style_ref']=$order->style_ref;
+        $row[$order->id]['job_no']=$order->job_no;
+        $row[$order->id]['item_jdescription'][$order->item_account_id]=$order->item_description;
+        $row[$order->id]['qty']=$order->qty;
+        $row[$order->id]['amount']=$order->amount; 
+        $row[$order->id]['style_fabrication_id']=$order->style_fabrication_id;
+        $row[$order->id]['fabric_description']=$order->style_fabrication_id; 
+        
+       }
+
+        $datas=array();
+        foreach($row as $orderid=>$value){
+            $value['item_description']=implode(',',$value['item_description']);
+            $value['rate']=number_format($value['amount']/$value['qty'],4);
+            array_push($datas, $value);
+        }
+//fabrication
+        $fabrications = $this->salesorder
+        ->selectRaw(
+			'budgets.id as budget_id,
+			style_fabrications.id as style_fabrication_id,
+			style_fabrications.material_source_id,
+			style_fabrications.fabric_nature_id,
+			style_fabrications.fabric_look_id,
+			style_fabrications.fabric_shape_id,
+			gmtsparts.name as gmtspart_name,
+			budget_fabrics.gsm_weight,
+			budget_fabrics.id'
+        )
+        ->join('jobs', function($join)  {
+            $join->on('jobs.id', '=', 'sales_orders.job_id');
+        })
+       ->join('styles', function($join)  {
+            $join->on('styles.id', '=', 'jobs.style_id');
+        })
+        ->join('budgets',function($join){
+            $join->on('budgets.style_id','=','styles.id');
+        })
+        ->join('style_fabrications',function($join){
+            $join->on('style_fabrications.style_id','=','budgets.style_id');
+        })
+        ->join('style_gmts',function($join){
+            $join->on('style_gmts.id','=','style_fabrications.style_gmt_id');
+        })
+        ->join('gmtsparts',function($join){
+            $join->on('gmtsparts.id','=','style_fabrications.gmtspart_id');
+        })
+        ->join('autoyarns',function($join){
+            $join->on('autoyarns.id','=','style_fabrications.autoyarn_id');
+        })
+    
+        ->leftJoin('budget_fabrics',function($join){
+            $join->on('budget_fabrics.budget_id','=','budgets.id');
+            $join->on('budget_fabrics.style_fabrication_id','=','style_fabrications.id');
+        })
+        ->leftJoin('budget_fabric_cons',function($join){
+            $join->on('budget_fabric_cons.budget_fabric_id','=','budget_fabrics.id');
+        })
+        ->groupBy([
+            'budgets.id',
+            'style_fabrications.id',
+            'style_fabrications.material_source_id',
+            'style_fabrications.fabric_nature_id',
+            'style_fabrications.fabric_look_id',
+            'item_accounts.item_description',
+            'style_fabrications.fabric_shape_id',
+            'budget_fabrics.gsm_weight',
+            'budget_fabrics.id',
+            ])
+            ->get();
+            $stylefabrications=array();
+		    $stylenarrowfabrications=array();
+            foreach($fabrics as $row){
+                //$stylenarrowfabrication['id']=$narrowrow->id;
+                $stylefabrication['budget_id']=$row->budget_id;
+			    $stylefabrication['style_fabrication_id']=$row->style_fabrication_id;
+			    $stylefabrication['style_gmt']=$row->item_description;
+			    $stylefabrication['fabric_description']=$desDropdown[$row->style_fabrication_id];
+                array_push($stylefabrications,$stylefabrication);
+    
+            }
+
+//////////////////
+
+        $company=$this->company->where([['id','=',  $expsalescontract['company_id']]])->get()->first();
+        $buyerbranch=$this->buyerbranch->where([['buyer_id','=', $expsalescontract['buyer_id']]])->get()->first();
+        $bank=$this->bank->where([['id','=', $expsalescontract['bank_id']]])->get()->first();
+       
+
+        $pdf = new \Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $header=['logo'=>$company->logo,'address'=>$company->address,'title'=>'SALES CONTRACT'];
+        $pdf->setCustomHeader($header);
+        $pdf->SetPrintHeader(true);
+        $pdf->SetPrintFooter(false);
+	    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+	    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+	    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+	    $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+	    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	    $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+        $pdf->SetFont('helvetica', 'B', 12);
+        $pdf->AddPage();
+       
+        $pdf->SetFont('helvetica', '', 8);
+        $view= \View::make('Defult.Commercial.Export.ExpSalesContractPdf',['expsalescontract'=>$expsalescontract,'orders'=>$orders,'company'=>$company,'buyerbranch'=>$buyerbranch,'bank'=>$bank]);
+        $html_content=$view->render();
+        $pdf->SetY(23);
+        $pdf->WriteHtml($html_content, true, false,true,false,'');
+        $filename = storage_path() . '/ExpSalesContractPdf.pdf';
+        $pdf->output($filename,'I');
+        exit();
+        
+    
+    }
+
+}
+
+
+<div title="Corresponding Order Details" style="padding:2px">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'north',border:true,title:'Add Information',iconCls:'icon-more',footer:'#invorderft'" style="width:450px; padding:2px">
+                <form id="expinvoiceorderFrm">
+                    <div id="container">
+                        <div id="body">
+                            <code>
+                                <div class="row">
+                                    <input type="hidden" name="sub_inb_marketing_id" id="sub_inb_marketing_id" value="" />
+                                    <input type="hidden" name="id" id="id" value="" />
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Packing List </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" placeholder="browse"  value="" />
+                                    </div>
+                                    
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Order No. </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" placeholder=" display"  value="" />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Ship Date  </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" placeholder=" display"  value="" disabled />
+                                    </div>
+                                </div>                                   
+                                <div class="row middle">
+                                    <div class="col-sm-4">Attached Order Qty. </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" placeholder=" display" class="number integer" value="" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Ex-Fact. Qty. </div>
+                                    <div class="col-sm-8">
+                                            <input type="text" name="" id="" placeholder=" display"  value="" class="number integer" placeholder=" display" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4 req-text">Rate </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="rate" id="rate" value="" class="number integer" placeholder=" display" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Current Inv. Qty.  </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" pop up" />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Current Inv. Value  </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" pop up display"  />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Total Inv. Qty. </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" pop up display"  />
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row middle">
+                                    <div class="col-sm-4">PO Bal. Qty.  </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" display" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Total Inv. Value </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" display" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Merchant </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" class="number integer" placeholder=" display" disabled />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Prod. Source  </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" id="" value="" placeholder=" combo" class="number integer" />
+                                    </div>
+                                </div>
+                                <div class="row middle">
+                                    <div class="col-sm-4">Location </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="location_id" id="location_id" value="" placeholder="display" disabled />
+                                    </div>
+                                </div>                                 
+                            </code>
+                        </div>
+                    </div>
+                    <div id="invorderft" style="padding:0px 0px; text-align:right; background:#F3F3F3;">
+                        <a href="javascript:void(0)" class="easyui-linkbutton  c1" style="height:25px; border-radius:1px" iconCls="icon-save" plain="true" id="save" onClick="MsSubInbService.submit()">Save</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton c6" style="height:25px;border-radius:1px" iconCls="icon-remove" plain="true" id="delete" onClick="msApp.resetForm('subinbserviceFrm')">Reset</a>
+                        <a href="javascript:void(0)" class=" easyui-linkbutton c5" style="height:25px;border-radius:1px" iconCls="icon-remove" plain="true" id="delete" onClick="MsSubInbService.remove()">Delete</a>
+                    </div>
+                </form>  
+            </div>
+            <div data-options="region:'center',border:true,title:'Lists'" style="padding:2px">
+                <table id="expinvoiceorderTbl" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th data-options="field:'id'" width="30">ID</th>
+                            <th data-options="field:''" width="80">Packing list</th>
+                            <th data-options="field:'sales_order_no'" width="80">Order No</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+SQL
+
+SELECT item_accounts.id as item_account_id,sum (inv_pur_req_items.qty) as qty,sum (inv_pur_req_items.rate) as rate, sum (inv_pur_req_items.amount) as amount FROM inv_pur_req_items right join item_accounts on item_accounts.id = inv_pur_req_items.item_account_id   group by item_accounts.id
+
+
+
+
+https://stackoverflow.com/questions/42735071/concat-columns-with-laravel-5-eloquent/42759042

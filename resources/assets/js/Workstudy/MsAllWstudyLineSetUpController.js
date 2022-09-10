@@ -1,0 +1,5 @@
+require('./MsWstudyLineSetupController.js')
+require('./MsWstudyLineSetupDtlController.js')
+require('./MsWstudyLineSetupDtlOrdController.js')
+require('./MsWstudyLineSetupLineController.js')
+require('./MsWstudyLineSetupMinAdjController.js')

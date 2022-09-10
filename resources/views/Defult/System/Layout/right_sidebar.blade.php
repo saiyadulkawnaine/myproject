@@ -1,0 +1,2 @@
+ <div data-options="region:'east',collapsed:true,collapsedSize:1,minWidth:1,collapsible:false" style="width:250px;background:url( <?php echo url('/');?>/images/pattern.svg);"> <!--rgba(0, 0, 0, 0) linear-gradient(to bottom, #f8f8f8 0px, #eeeeee 100%) repeat-x scroll 0 0-->
+    </div>
